@@ -1,0 +1,27 @@
+{
+  "name": "lands-co-collector",
+  "version": "1.0.0",
+  "description": "Lands-Co Collector",
+  "main": "src/main.js",
+  "author": "Ma7MOoOD SHaRaF",
+  "scripts": {
+    "start": "electron src/main.js",
+    "pack:win32": "electron-packager . \"Lands-Co Collector\" --out=dist/win --platform=win32 --arch=ia32 --electron-version=13.1.2 --icon=src/assets/lands-co.ico -out=release-builds",
+    "pack:win64": "electron-packager . \"Lands-Co Collector\" --out=dist/win --platform=win32 --arch=x64 --electron-version=13.1.2 --icon=src/assets/lands-co.ico -out=release-builds",
+    "build": "npm run pack:win32 && npm run pack:win64",
+    "setup": "electron-installer-windows --src \"dist/win/Lands-Co Collector-win32-x64\" --dest dist/installers"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.57",
+    "electron": "^13.1.2",
+    "electron-installer-windows": "^3.0.0",
+    "electron-reload": "^1.5.0",
+    "electron-wix-msi": "^3.2.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "moment": "^2.29.1",
+    "rive-js": "^0.7.15"
+  }
+}
