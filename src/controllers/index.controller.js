@@ -49,6 +49,10 @@ function exitWindow() {
 }
 
 async function updateCorona(btn) {
+    if (!(await checkInternet())){
+        showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
+        return;
+    }
     if (!coronaLock) {
         coronaLock = true;
         toggleButtonLoader(btn);
@@ -66,6 +70,10 @@ async function updateCorona(btn) {
 }
 
 async function updateWeather(btn) {
+    if (!(await checkInternet())){
+        showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
+        return;
+    }
     if (!weatherLock) {
         weatherLock = true;
         toggleButtonLoader(btn);
@@ -83,6 +91,10 @@ async function updateWeather(btn) {
 }
 
 async function updateCurrency(btn) {
+    if (!(await checkInternet())){
+        showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
+        return;
+    }
     if (!currencyLock) {
         currencyLock = true;
         toggleButtonLoader(btn);
@@ -100,6 +112,10 @@ async function updateCurrency(btn) {
 }
 
 async function updatePrayer(btn) {
+    if (!(await checkInternet())){
+        showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
+        return;
+    }
     if (!prayerLock) {
         prayerLock = true;
         toggleButtonLoader(btn);
@@ -117,6 +133,10 @@ async function updatePrayer(btn) {
 }
 
 async function updateFootball(btn) {
+    if (!(await checkInternet())){
+        showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
+        return;
+    }
     if (!footballLock) {
         footballLock = true;
         toggleButtonLoader(btn);
@@ -134,6 +154,10 @@ async function updateFootball(btn) {
 }
 
 async function updateAllData(btn) {
+    if (!(await checkInternet())){
+        showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
+        return;
+    }
     if (coronaLock || weatherLock || currencyLock || prayerLock || footballLock) {
         showSnackbarWithType('هناك تحديث قيد التشغيل الآن، إنتظر حتى الإنتهاء');
         return;

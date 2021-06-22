@@ -15,12 +15,12 @@
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.57",
     "electron": "^13.1.2",
-    "electron-installer-windows": "^3.0.0",
     "electron-reload": "^1.5.0",
     "electron-wix-msi": "^3.2.0"
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "connectivity": "^1.0.2",
     "moment": "^2.29.1",
     "rive-js": "^0.7.15"
   }

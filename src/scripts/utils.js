@@ -1,6 +1,7 @@
 const fs = require('fs');
 const axios = require('axios');
 const moment = require('moment');
+const connectivity = require('connectivity');
 let darkMode = localStorage.getItem('lands_darkMode');
 const darkModeToggle = document.querySelector('#dark-mode-toggle');
 const enableDarkMode = () => {
@@ -38,7 +39,17 @@ const SnackbarType = {
     SUCCESS: 'success',
     WRONG: 'wrong',
 }
-
+function checkInternet(){
+    return new Promise((resolve) => {
+        connectivity(function (online) {
+            if (online) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    })
+}
 function showSnackbarWithType(msg, sType) {
     const bar = document.getElementById("snackbar");
     bar.classList.contains('show') && (bar.classList.remove('show'));
@@ -174,7 +185,7 @@ async function getFootballData() {
                 team2: (matchX.querySelector('.team2')).querySelector('.teamName').innerText,
             })
         }
-        footballData.push(obj);
+        obj.fixtures.length && footballData.push(obj);
     }
     return footballData;
 }
