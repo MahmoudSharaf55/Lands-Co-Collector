@@ -18,9 +18,13 @@ function createMainWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
+            devTools: false,
         }
     });
     mainWindow.loadFile(__dirname + "/views/index.html");
+    mainWindow.on('system-context-menu', e => {
+        e.preventDefault()
+    })
 }
 
 function createAboutWindow() {
@@ -40,7 +44,8 @@ function createAboutWindow() {
         parent: mainWindow,
         webPreferences: {
             nodeIntegration: true,
-            contextIsolation: false
+            contextIsolation: false,
+            devTools: false,
         },
     });
     aboutWindow.loadFile(__dirname + "/views/about.html");
