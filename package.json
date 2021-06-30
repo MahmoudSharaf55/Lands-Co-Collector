@@ -9,7 +9,7 @@
     "pack:win32": "electron-packager . \"Lands-Co Collector\" --out=dist/win --platform=win32 --arch=ia32 --electron-version=13.1.2 --icon=src/assets/lands-co.ico -out=release-builds",
     "pack:win64": "electron-packager . \"Lands-Co Collector\" --out=dist/win --platform=win32 --arch=x64 --electron-version=13.1.2 --icon=src/assets/lands-co.ico -out=release-builds",
     "build": "npm run pack:win32 && npm run pack:win64",
-    "setup": "electron-installer-windows --src \"dist/win/Lands-Co Collector-win32-x64\" --dest dist/installers"
+    "setup": "node src/build_installer.js"
   },
   "license": "ISC",
   "devDependencies": {
