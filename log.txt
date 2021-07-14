@@ -1,0 +1,18 @@
+-------------- 13/07/2021 12:39 PM --------------
+Error: Network Error
+-------------- 13/07/2021 12:39 PM --------------
+TypeError: Cannot read property 'innerText' of null
+-------------- 13/07/2021 12:39 PM --------------
+TypeError: Cannot read property 'innerText' of null
+-------------- 13/07/2021 12:40 PM --------------
+TypeError: Cannot read property 'innerText' of null
+-------------- 13/07/2021 12:41 PM --------------
+TypeError: Cannot read property 'innerText' of null
+-------------- 13/07/2021 12:50 PM --------------
+ReferenceError: page is not defined
+-------------- 13/07/2021 12:50 PM --------------
+ReferenceError: page is not defined
+-------------- 13/07/2021 12:54 PM --------------
+ReferenceError: page is not defined
+-------------- 13/07/2021 12:54 PM --------------
+TypeError: Cannot read property 'querySelector' of null

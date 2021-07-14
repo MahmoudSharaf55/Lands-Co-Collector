@@ -1,1 +1,9 @@
-{"times":{"Imsak":"03:09","Sunrise":"04:55","Fajr":"03:19","Dhuhr":"11:58","Asr":"15:34","Sunset":"19:01","Maghrib":"19:17","Isha":"20:37","Midnight":"23:10"},"date":{"timestamp":1624665600,"gregorian":"2021-06-26","hijri":"1442-11-16"}}
+{
+  "times": {
+    "Fajr": "03:19",
+    "Dhuhr": "12:02",
+    "Asr": "15:37",
+    "Maghrib": "18:58",
+    "Isha": "20:29"
+  }
+}

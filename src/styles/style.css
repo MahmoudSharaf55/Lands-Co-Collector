@@ -56,27 +56,26 @@ body {
     transition: color 0.5s ease, background-color 0.5s ease;
     font-family: var(--font-family);
     background-color: transparent;
+    border-radius: 8px;
 }
 
 .window-content {
     transition: color 0.5s ease, background-color 0.5s ease;
-    margin: 5px;
     -webkit-user-select: none;
     -webkit-app-region: drag;
     border-radius: 8px;
-    box-shadow: 0 0 5px #343434;
     background: var(--background);
     overflow: hidden;
 }
 
 .main-window {
-    width: 990px;
-    height: 490px;
+    width: 1000px;
+    height: 500px;
 }
 
 .about-window {
-    width: 590px;
-    height: 290px;
+    width: 600px;
+    height: 300px;
 }
 
 .direction-rtl {
@@ -213,7 +212,6 @@ a:active {
     position: absolute;
     top: 10px;
     left: 10px;
-    font-family: 'Comfortaa', sans-serif;
 }
 
 .app-title {

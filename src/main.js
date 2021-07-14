@@ -12,19 +12,24 @@ function createMainWindow() {
         autoHideMenuBar: true,
         resizable: false,
         frame: false,
-        closable: false,
         transparent: true,
+        roundedCorners: true,
         icon: __dirname + '/assets/lands-co.ico',
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
+            enableRemoteModule: true,
             devTools: false,
         }
     });
     mainWindow.loadFile(__dirname + "/views/index.html");
-    mainWindow.on('system-context-menu', e => {
-        e.preventDefault()
-    })
+    mainWindow.once("ready-to-show", () => {
+        mainWindow.show();
+    });
+    mainWindow.on('close', () => {
+        mainWindow.destroy();
+        mainWindow = null;
+    });
 }
 
 function createAboutWindow() {
@@ -36,7 +41,6 @@ function createAboutWindow() {
         autoHideMenuBar: true,
         resizable: false,
         frame: false,
-        closable: false,
         transparent: true,
         modal: true,
         show: false,
@@ -45,6 +49,7 @@ function createAboutWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
+            enableRemoteModule: true,
             devTools: false,
         },
     });
@@ -53,22 +58,20 @@ function createAboutWindow() {
     aboutWindow.once("ready-to-show", () => {
         aboutWindow.show();
     });
+    aboutWindow.on('close', () => {
+        aboutWindow.destroy();
+        aboutWindow = null;
+    });
 }
 
 ipcMain.on('minimize-window', (event, arg) => {
     mainWindow.minimize();
 });
 ipcMain.on('exit-window', (event, arg) => {
-    app.exit();
+    app.exit(0);
 });
 ipcMain.on("open-about-window", (event, arg) => {
     createAboutWindow();
-});
-ipcMain.on("close-about-window", (event, arg) => {
-    aboutWindow.hide();
-    aboutWindow.close();
-    aboutWindow.destroy();
-    aboutWindow = null;
 });
 app.whenReady().then(() => {
     createMainWindow();

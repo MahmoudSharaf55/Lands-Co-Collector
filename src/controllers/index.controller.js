@@ -6,6 +6,7 @@ let weatherUpdatedDate = localStorage.getItem('weather-date') != null ? JSON.par
 let currencyUpdatedDate = localStorage.getItem('currency-date') != null ? JSON.parse(localStorage.getItem('currency-date')) : null;
 let prayerUpdatedDate = localStorage.getItem('prayer-date') != null ? JSON.parse(localStorage.getItem('prayer-date')) : null;
 let footballUpdatedDate = localStorage.getItem('football-date') != null ? JSON.parse(localStorage.getItem('football-date')) : null;
+let dstLocation = localStorage.getItem('location');
 const rive = new Rive({
     src: '../assets/mosque.riv',
     canvas: document.getElementById('mosque-riv'),
@@ -40,6 +41,7 @@ let coronaLock = false,
 function minimizeWindow() {
     ipcRenderer.send('minimize-window');
 }
+
 function openAboutWindow() {
     ipcRenderer.send('open-about-window');
 }
@@ -49,7 +51,7 @@ function exitWindow() {
 }
 
 async function updateCorona(btn) {
-    if (!(await checkInternet())){
+    if (!(await checkInternet())) {
         showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
         return;
     }
@@ -61,7 +63,7 @@ async function updateCorona(btn) {
             storeDataIntoJson(JSON.stringify(data), 'corona');
             setUpdatedDate(UpdateType.CORONA, new moment());
         } catch (e) {
-            console.log(e);
+            writeLog(e);
             showSnackbarWithType('خطأ فى تحديث الكورونا', SnackbarType.WRONG);
         }
         toggleButtonLoader(btn);
@@ -70,7 +72,7 @@ async function updateCorona(btn) {
 }
 
 async function updateWeather(btn) {
-    if (!(await checkInternet())){
+    if (!(await checkInternet())) {
         showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
         return;
     }
@@ -82,7 +84,7 @@ async function updateWeather(btn) {
             storeDataIntoJson(JSON.stringify(data), 'weather');
             setUpdatedDate(UpdateType.WEATHER, new moment());
         } catch (e) {
-            console.log(e);
+            writeLog(e);
             showSnackbarWithType('خطأ فى تحديث الطقس', SnackbarType.WRONG);
         }
         toggleButtonLoader(btn);
@@ -91,7 +93,7 @@ async function updateWeather(btn) {
 }
 
 async function updateCurrency(btn) {
-    if (!(await checkInternet())){
+    if (!(await checkInternet())) {
         showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
         return;
     }
@@ -103,7 +105,7 @@ async function updateCurrency(btn) {
             storeDataIntoJson(JSON.stringify(data), 'currency');
             setUpdatedDate(UpdateType.CURRENCY, new moment());
         } catch (e) {
-            console.log(e);
+            writeLog(e);
             showSnackbarWithType('خطأ فى تحديث أسعار العملات', SnackbarType.WRONG);
         }
         toggleButtonLoader(btn);
@@ -112,7 +114,7 @@ async function updateCurrency(btn) {
 }
 
 async function updatePrayer(btn) {
-    if (!(await checkInternet())){
+    if (!(await checkInternet())) {
         showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
         return;
     }
@@ -124,7 +126,7 @@ async function updatePrayer(btn) {
             storeDataIntoJson(JSON.stringify(data), 'prayer');
             setUpdatedDate(UpdateType.PRAYER, new moment());
         } catch (e) {
-            console.log(e);
+            writeLog(e);
             showSnackbarWithType('خطأ فى تحديث مواقيت الصلاة', SnackbarType.WRONG);
         }
         toggleButtonLoader(btn);
@@ -133,7 +135,7 @@ async function updatePrayer(btn) {
 }
 
 async function updateFootball(btn) {
-    if (!(await checkInternet())){
+    if (!(await checkInternet())) {
         showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
         return;
     }
@@ -145,7 +147,7 @@ async function updateFootball(btn) {
             storeDataIntoJson(JSON.stringify(data), 'football');
             setUpdatedDate(UpdateType.FOOTBALL, new moment());
         } catch (e) {
-            console.log(e);
+            writeLog(e);
             showSnackbarWithType('خطأ فى تحديث مباريات اليوم', SnackbarType.WRONG);
         }
         toggleButtonLoader(btn);
@@ -154,7 +156,7 @@ async function updateFootball(btn) {
 }
 
 async function updateAllData(btn) {
-    if (!(await checkInternet())){
+    if (!(await checkInternet())) {
         showSnackbarWithType('لا يوجد إتصال بالإنترنت', SnackbarType.WRONG);
         return;
     }
@@ -208,14 +210,23 @@ async function updateAllData(btn) {
     }
 }
 
+const path = document.getElementById('path-input');
+dstLocation && (path.value = dstLocation);
+
 function sendData(btn) {
     toggleButtonLoader(btn);
-    const path = document.getElementById('path-input');
     if (path.value != null && path.value !== '') {
         const result = sendCopyOfDataToViewApp(path.value);
-        result && showSnackbarWithType('تم إرسال البيانات للمسار المحدد', SnackbarType.SUCCESS);
+        if (result) {
+            showSnackbarWithType('تم إرسال البيانات للمسار المحدد', SnackbarType.SUCCESS);
+            localStorage.setItem('location', path.value);
+        }
     } else {
         showSnackbarWithType('أدخل المسار ثم حاول مرة أخري', SnackbarType.WRONG);
     }
     toggleButtonLoader(btn);
+}
+
+function developerToast() {
+    showSnackbarWithType('Developed By: Ma7MOoOD SHaRaF');
 }

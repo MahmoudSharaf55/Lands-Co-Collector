@@ -5,9 +5,9 @@
   "main": "src/main.js",
   "author": "Ma7MOoOD SHaRaF",
   "scripts": {
-    "start": "electron src/main.js",
-    "pack:win32": "electron-packager . \"Lands-Co Collector\" --out=dist/win --platform=win32 --arch=ia32 --electron-version=13.1.2 --icon=src/assets/lands-co.ico -out=release-builds",
-    "pack:win64": "electron-packager . \"Lands-Co Collector\" --out=dist/win --platform=win32 --arch=x64 --electron-version=13.1.2 --icon=src/assets/lands-co.ico -out=release-builds",
+    "start": "electron --enable-transparent-visuals src/main.js",
+    "pack:win32": "electron-packager . \"Lands-Co Collector\" --overwrite --asar --prune=true --out=dist/win --platform=win32 --arch=ia32 --electron-version=13.1.2 --icon=src/assets/lands-co.ico -out=release-builds",
+    "pack:win64": "electron-packager . \"Lands-Co Collector\" --overwrite --asar --prune=true --out=dist/win --platform=win32 --arch=x64 --electron-version=13.1.2 --icon=src/assets/lands-co.ico -out=release-builds",
     "build": "npm run pack:win32 && npm run pack:win64",
     "setup": "node src/build_installer.js"
   },
@@ -19,6 +19,7 @@
     "electron-wix-msi": "^3.2.0"
   },
   "dependencies": {
+    "adhan": "^4.2.1",
     "axios": "^0.21.1",
     "connectivity": "^1.0.2",
     "moment": "^2.29.1",

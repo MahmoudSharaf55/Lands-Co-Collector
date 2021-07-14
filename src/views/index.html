@@ -10,8 +10,11 @@
 <body>
 <div class="window-content main-window direction-rtl pt-3 d-flex flex-column" id="window-content">
     <div class="app-logo d-flex align-items-center">
-        <h5 class="dm-h pt-1 pl-1">Lands Collector</h5>
-        <img src="../assets/lands-co.png" alt="" width="60">
+        <div>
+            <h6 class="dm-h pt-1 pl-1">جهاز مشروعات أراضى القوات المسلحة</h6>
+            <h6 class="dm-h pt-1 pl-1">فرع نظم المعلومات</h6>
+        </div>
+        <i ondblclick="developerToast()"><img src="../assets/lands-logo.png" alt="" width="70" id="logo-img"></i>
     </div>
     <!--    <div class="app-title d-flex justify-content-center">-->
     <!--        <h4 class="dm-h pt-1 pl-1"> مرحباً <img src="../assets/waving.png" alt="" width="30"></h4>-->
@@ -23,15 +26,15 @@
                         src="../assets/close.png" width="12"
                         height="12" alt=""></i>
                 <div class="mx-1"></div>
-                <i class="round-icon mini-btn" style="padding-right: 2px" onclick="minimizeWindow()"><img
-                        src="../assets/minimize.png" width="14" height="14" alt=""></i>
-                <div class="mx-1"></div>
+                <!--                <i class="round-icon mini-btn" style="padding-right: 2px" onclick="minimizeWindow()"><img-->
+                <!--                        src="../assets/minimize.png" width="14" height="14" alt=""></i>-->
+                <!--                <div class="mx-1"></div>-->
                 <i id="dark-mode-toggle" class="round-icon dark-mode-btn"><img id="dark-mode-btn-img"
                                                                                src="../assets/sun.png" width="16"
                                                                                height="16" alt=""></i>
-                <div class="mx-1"></div>
-                <i class="round-icon mini-btn" style="padding-right: 2px" onclick="openAboutWindow()"><img
-                        src="../assets/info.png" width="14" height="14" alt=""></i>
+                <!--                <div class="mx-1"></div>-->
+                <!--                <i class="round-icon mini-btn" style="padding-right: 2px" onclick="openAboutWindow()"><img-->
+                <!--                        src="../assets/info.png" width="14" height="14" alt=""></i>-->
             </div>
         </div>
     </div>
@@ -179,5 +182,10 @@
 <script src="../scripts/countries.js"></script>
 <script src="../scripts/utils.js"></script>
 <script src="../controllers/index.controller.js"></script>
+<script>
+    document.getElementById('logo-img').addEventListener('dragstart', function (event) {
+        event.preventDefault();
+    });
+</script>
 </body>
 </html>

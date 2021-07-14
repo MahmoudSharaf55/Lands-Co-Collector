@@ -13,7 +13,7 @@ const msiCreator = new MSICreator({
     manufacturer: 'Ma7MOoOD SHaRaF',
     version: '1.0.0',
     appIconPath: 'C:\\Users\\gnozom\\WebstormProjects\\Lands-Co-Collector\\src\\assets\\lands-co.ico',
-    programFilesFolderName: "Lands-Co",
+    programFilesFolderName: "Lands-Co Collector",
     ui: {
         chooseDirectory: true,
     },

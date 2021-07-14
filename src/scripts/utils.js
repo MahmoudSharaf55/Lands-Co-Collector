@@ -2,19 +2,19 @@ const fs = require('fs');
 const axios = require('axios');
 const moment = require('moment');
 const connectivity = require('connectivity');
-let darkMode = localStorage.getItem('lands_darkMode');
+let darkMode = localStorage.getItem('lands_c_darkMode');
 const darkModeToggle = document.querySelector('#dark-mode-toggle');
 const enableDarkMode = () => {
     const btn = document.getElementById('dark-mode-btn-img');
     btn && (btn.src = '../assets/sun.png');
     document.body.classList.add('dark-mode');
-    localStorage.setItem('lands_darkMode', 'enabled');
+    localStorage.setItem('lands_c_darkMode', 'enabled');
 };
 const disableDarkMode = () => {
     const btn = document.getElementById('dark-mode-btn-img');
     btn && (btn.src = '../assets/moon.png');
     document.body.classList.remove('dark-mode');
-    localStorage.setItem('lands_darkMode', null);
+    localStorage.setItem('lands_c_darkMode', null);
 };
 if (darkMode === 'enabled') {
     enableDarkMode();
@@ -26,7 +26,7 @@ if (darkMode === 'enabled') {
     btn && (btn.src = '../assets/moon.png');
 }
 darkModeToggle && darkModeToggle.addEventListener('click', () => {
-    darkMode = localStorage.getItem('lands_darkMode');
+    darkMode = localStorage.getItem('lands_c_darkMode');
     if (darkMode !== 'enabled') {
         enableDarkMode();
         document.getElementById('dark-mode-btn-img').src = '../assets/sun.png';
@@ -163,26 +163,37 @@ async function getCurrencyData() {
 }
 
 async function getPrayerData() {
-    const prayerData = await axios.get('https://api.pray.zone/v2/times/today.json?city=cairo');
-    return prayerData.data['results']['datetime'][0];
+    const adhan = require('adhan');
+    const coordinates = new adhan.Coordinates(30.047272, 31.325525);
+    const params = adhan.CalculationMethod.Egyptian();
+    const prayerTimes = new adhan.PrayerTimes(coordinates, new Date(), params);
+    return {
+        times: {
+            Fajr: moment(prayerTimes.fajr).format('HH:mm'),
+            Dhuhr: moment(prayerTimes.dhuhr).format('HH:mm'),
+            Asr: moment(prayerTimes.asr).format('HH:mm'),
+            Maghrib: moment(prayerTimes.maghrib).format('HH:mm'),
+            Isha: moment(prayerTimes.isha).format('HH:mm'),
+        }
+    };
 }
 
 async function getFootballData() {
-    const data = await axios.get('https://www.btolat.com/matches');
+    const data = await axios.get('https://www.yallakora.com/match-center');
     const page = document.createElement('html');
     page.innerHTML = data.data;
     const footballData = [];
-    const all = page.querySelector('#all');
-    for (const matchTableX of all.querySelectorAll('.matchtableX')) {
+    const all = page.querySelector('#day').querySelector('.cd-gallery').querySelector('.mtchCntrContainer');
+    for (const matchItem of all.querySelectorAll('.matchItem')) {
         const obj = {
-            leagueName: matchTableX.querySelector('.legTitle').innerText,
+            leagueName: matchItem.querySelector('.ttl').querySelector('h2').querySelector('a').innerText,
             fixtures: [],
         };
-        for (const matchX of matchTableX.querySelectorAll('.notYet')) {
+        for (const matchX of matchItem.querySelector('.mtchObjContainer').querySelectorAll('.matchObj')) {
             obj.fixtures.push({
-                team1: (matchX.querySelector('.team1')).querySelector('.teamName').innerText,
-                time: (matchX.querySelector('.matchDate')).querySelector('span').innerText,
-                team2: (matchX.querySelector('.team2')).querySelector('.teamName').innerText,
+                team1: matchX.querySelector('.teamA').querySelector('.teamName').innerText.trim(),
+                time: moment(matchX.querySelector('.resultDiv').querySelector('.matchTime').innerText.trim(),'HH:mm').format('h:mm'),
+                team2: matchX.querySelector('.teamB').querySelector('.teamName').innerText.trim(),
             })
         }
         obj.fixtures.length && footballData.push(obj);
@@ -244,5 +255,14 @@ function sendCopyOfDataToViewApp(path) {
             showSnackbarWithType('المسار غير موجود', SnackbarType.WRONG);
         else
             showSnackbarWithType('خطأ فى إرسال البيانات', SnackbarType.WRONG);
+        writeLog(e);
+    }
+}
+
+function writeLog(text) {
+    try {
+        fs.appendFileSync('log.txt', `-------------- ${moment().format('DD/MM/YYYY HH:mm A')} --------------\r\n${text}\r\n`);
+    } catch (e) {
+        console.log(e);
     }
 }

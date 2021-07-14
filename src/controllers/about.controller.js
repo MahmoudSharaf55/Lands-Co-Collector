@@ -1,4 +1,5 @@
-const {ipcRenderer} = require('electron');
-function closeAboutWindow(){
-    ipcRenderer.send('close-about-window');
+const {remote} = require('electron');
+
+function closeAboutWindow() {
+    remote.getCurrentWindow().close();
 }
