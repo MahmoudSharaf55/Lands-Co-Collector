@@ -39,7 +39,8 @@ const SnackbarType = {
     SUCCESS: 'success',
     WRONG: 'wrong',
 }
-function checkInternet(){
+
+function checkInternet() {
     return new Promise((resolve) => {
         connectivity(function (online) {
             if (online) {
@@ -50,6 +51,7 @@ function checkInternet(){
         });
     })
 }
+
 function showSnackbarWithType(msg, sType) {
     const bar = document.getElementById("snackbar");
     bar.classList.contains('show') && (bar.classList.remove('show'));
@@ -178,25 +180,28 @@ async function getPrayerData() {
     };
 }
 
-async function getFootballData() {
-    const data = await axios.get('https://www.yallakora.com/match-center');
+async function getFootballData(date) {
+    const data = await axios.get('https://www.yallakora.com/match-center' + (date ? `?date=${date}` : ''));
     const page = document.createElement('html');
     page.innerHTML = data.data;
     const footballData = [];
-    const all = page.querySelector('#day').querySelector('.cd-gallery').querySelector('.mtchCntrContainer');
-    for (const matchItem of all.querySelectorAll('.matchItem')) {
-        const obj = {
-            leagueName: matchItem.querySelector('.ttl').querySelector('h2').querySelector('a').innerText,
-            fixtures: [],
-        };
-        for (const matchX of matchItem.querySelector('.mtchObjContainer').querySelectorAll('.matchObj')) {
-            obj.fixtures.push({
-                team1: matchX.querySelector('.teamA').querySelector('.teamName').innerText.trim(),
-                time: moment(matchX.querySelector('.resultDiv').querySelector('.matchTime').innerText.trim(),'HH:mm').format('h:mm'),
-                team2: matchX.querySelector('.teamB').querySelector('.teamName').innerText.trim(),
-            })
+    const day = page.querySelector('#day');
+    if (!day.querySelectorAll('.noStatsDiv').length) {
+        const all = day.querySelector('.cd-gallery').querySelector('.mtchCntrContainer');
+        for (const matchItem of all.querySelectorAll('.matchItem')) {
+            const obj = {
+                leagueName: matchItem.querySelector('.ttl').querySelector('h2').querySelector('a').innerText,
+                fixtures: [],
+            };
+            for (const matchX of matchItem.querySelector('.mtchObjContainer').querySelectorAll('.matchObj')) {
+                obj.fixtures.push({
+                    team1: matchX.querySelector('.teamA').querySelector('.teamName').innerText.trim(),
+                    time: moment(matchX.querySelector('.resultDiv').querySelector('.matchTime').innerText.trim(), 'HH:mm').format('h:mm'),
+                    team2: matchX.querySelector('.teamB').querySelector('.teamName').innerText.trim(),
+                })
+            }
+            obj.fixtures.length && footballData.push(obj);
         }
-        obj.fixtures.length && footballData.push(obj);
     }
     return footballData;
 }

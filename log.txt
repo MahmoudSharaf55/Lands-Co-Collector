@@ -16,3 +16,35 @@ ReferenceError: page is not defined
 ReferenceError: page is not defined
 -------------- 13/07/2021 12:54 PM --------------
 TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 10:54 AM --------------
+TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 10:54 AM --------------
+TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 10:55 AM --------------
+TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 10:55 AM --------------
+TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 10:57 AM --------------
+TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 10:57 AM --------------
+TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 10:58 AM --------------
+TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 10:58 AM --------------
+TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 10:59 AM --------------
+TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 11:29 AM --------------
+TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 11:33 AM --------------
+TypeError: Cannot read property 'querySelector' of null
+-------------- 19/07/2021 11:39 AM --------------
+TypeError: Cannot read property 'querySelectorAll' of null
+-------------- 19/07/2021 11:40 AM --------------
+TypeError: Cannot read property 'querySelectorAll' of null
+-------------- 19/07/2021 11:40 AM --------------
+TypeError: Cannot read property 'querySelectorAll' of null
+-------------- 19/07/2021 11:40 AM --------------
+TypeError: Cannot read property 'querySelectorAll' of null
+-------------- 19/07/2021 11:41 AM --------------
+TypeError: Cannot read property 'querySelectorAll' of null

@@ -143,10 +143,15 @@ async function updateFootball(btn) {
         footballLock = true;
         toggleButtonLoader(btn);
         try {
-            const data = await getFootballData();
-            storeDataIntoJson(JSON.stringify(data), 'football');
+            const todayData = await getFootballData();
+            const tomorrowData = await getFootballData(moment().add({day: 1}).format('M/DD/YYYY'));
+            storeDataIntoJson(JSON.stringify({
+                today: todayData,
+                tomorrow: tomorrowData,
+            }), 'football');
             setUpdatedDate(UpdateType.FOOTBALL, new moment());
         } catch (e) {
+            console.log(e);
             writeLog(e);
             showSnackbarWithType('خطأ فى تحديث مباريات اليوم', SnackbarType.WRONG);
         }
