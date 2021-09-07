@@ -164,7 +164,7 @@ async function getCurrencyData() {
     };
 }
 
-async function getPrayerData() {
+async function getPrayerDataa() {
     const adhan = require('adhan');
     const coordinates = new adhan.Coordinates(30.047272, 31.325525);
     const params = adhan.CalculationMethod.Egyptian();
@@ -181,6 +181,7 @@ async function getPrayerData() {
 }
 
 async function getFootballData(date) {
+    console.log(date);
     const data = await axios.get('https://www.yallakora.com/match-center' + (date ? `?date=${date}` : ''));
     const page = document.createElement('html');
     page.innerHTML = data.data;
@@ -204,6 +205,30 @@ async function getFootballData(date) {
         }
     }
     return footballData;
+}
+
+async function getPrayerData(date) {
+    const data = await axios.get('https://athantimes.com/Egypt');
+    const page = document.createElement('html');
+    page.innerHTML = data.data;
+    const salat = page.querySelector('#salat');
+    if (salat) {
+        const table = salat.querySelector('table').querySelector('tbody');
+        if (table) {
+            const rows = table.querySelectorAll('tr');
+            console.log(rows);
+            return {
+                times: {
+                    Fajr: rows[0].querySelector('td').innerText,
+                    Dhuhr: rows[1].querySelector('td').innerText,
+                    Asr: rows[2].querySelector('td').innerText,
+                    Maghrib: rows[3].querySelector('td').innerText,
+                    Isha: rows[4].querySelector('td').innerText,
+                }
+            };
+        }
+    }
+    return {};
 }
 
 const UpdateType = {

@@ -19,7 +19,6 @@ function createMainWindow() {
             nodeIntegration: true,
             contextIsolation: false,
             enableRemoteModule: true,
-            devTools: false,
         }
     });
     mainWindow.loadFile(__dirname + "/views/index.html");
@@ -50,7 +49,6 @@ function createAboutWindow() {
             nodeIntegration: true,
             contextIsolation: false,
             enableRemoteModule: true,
-            devTools: false,
         },
     });
     aboutWindow.loadFile(__dirname + "/views/about.html");
