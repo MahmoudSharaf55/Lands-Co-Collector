@@ -13,7 +13,7 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.57",
+    "@electron-forge/cli": "^6.0.0-beta.61",
     "electron": "^13.1.2",
     "electron-reload": "^1.5.0",
     "electron-wix-msi": "^3.2.0"
