@@ -6,7 +6,7 @@
   <h4 align="center">For Armed Forces Land Projects Authority</h4>
   <p align="center">
     <strong>Lands-Co Collector</strong> is a data collector program that collects corona, football, prayer times, today currencies price,
-  and weather data from trusted sources and APIs as JSON files and sends them to the "Lands-Co" program for users to see.
+  and weather data from trusted sources and APIs as JSON files and sends them to the <a href="https://github.com/MahmoudSharaf55/Lands-Co">Lands-Co</a> program for users to see.
     <br>
     <br>
     <a href="https://github.com/MahmoudSharaf55/Lands-Co-Collector/issues/new">Have a bug</a>
