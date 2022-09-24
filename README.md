@@ -34,8 +34,15 @@
 |             **Features**           |
 | :---------------------------------------------------- |
 | Automatically detect network connection state |
+| Sends the fetched data to the "Lands-Co" data folder path with one click |
 | Light & Dark Mode |
 | Awesome user interface |
+
+## ✅ Supported Platforms
+
+![](https://raw.githubusercontent.com/EgoistDeveloper/operating-system-logos/master/src/48x48/WIN.png "Windows")
+![](https://raw.githubusercontent.com/EgoistDeveloper/operating-system-logos/master/src/48x48/LIN.png "Linux")
+![](https://raw.githubusercontent.com/EgoistDeveloper/operating-system-logos/master/src/48x48/MAC.png "MAC")
 
 ## 🛠️ Technologies
 
