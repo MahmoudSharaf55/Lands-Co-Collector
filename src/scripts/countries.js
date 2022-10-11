@@ -55,7 +55,7 @@ const countriesName = {
     "Tunisia": "تونس",
     "Croatia": "كرواتيا",
     "Georgia": "جورجيا",
-    "Costa Rica": "كوستا ريكا",
+    "Costa Rica": "كوستاريكا",
     "Uruguay": "أوروغواي",
     "Azerbaijan": "أذربيجان",
     "Kuwait": "الكويت",

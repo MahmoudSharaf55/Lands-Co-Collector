@@ -74,10 +74,10 @@ function storeDataIntoJson(data, filename) {
 
 async function getCoronaData() {
     const data = {};
-    const egData = await axios.get('https://corona.lmao.ninja/v3/covid-19/countries/egypt?yesterday=true&strict=true&query');
-    const egLastData = await axios.get('https://corona.lmao.ninja/v3/covid-19/historical/egypt?lastdays=5');
-    const worldData = await axios.get('https://corona.lmao.ninja/v3/covid-19/all?yesterday');
-    const countriesData = await axios.get('https://corona.lmao.ninja/v3/covid-19/countries?yesterday&sort=cases');
+    const egData = await axios.get('https://disease.sh/v3/covid-19/countries/egypt?yesterday=true&strict=true');
+    const egLastData = await axios.get('https://disease.sh/v3/covid-19/historical/Egypt?lastdays=5');
+    const worldData = await axios.get('https://disease.sh/v3/covid-19/all?yesterday=true');
+    const countriesData = await axios.get('https://disease.sh/v3/covid-19/countries?yesterday=true&sort=cases');
     data.egypt = {
         updated: egData.data['updated'],
         cases: egData.data['cases'],
@@ -164,7 +164,7 @@ async function getCurrencyData() {
     };
 }
 
-async function getPrayerDataa() {
+function getPrayerDataAlternative() {
     const adhan = require('adhan');
     const coordinates = new adhan.Coordinates(30.047272, 31.325525);
     const params = adhan.CalculationMethod.Egyptian();
@@ -228,7 +228,7 @@ async function getPrayerData(date) {
             };
         }
     }
-    return {};
+    return getPrayerDataAlternative();
 }
 
 const UpdateType = {
